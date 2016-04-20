@@ -6,7 +6,6 @@
 		<script type="text/javascript" src="jquery-revelador.js"></script>
 		<style type="text/css">
             .imagen{position: relative; width: 459px; height: 460px; margin: 30px auto;}
-			img{ opacity: 0; height: 100%; -webkit-transition: all 0.3s, ease-in-out ease-out; -moz-transition: all 0.3s, ease-in-out ease-out; -o-transition: all 0.3s, ease-in-out ease-out; transition: all 0.3s, ease-in-out ease-out;}
 		</style>
 	</head>
 	<body>
@@ -55,7 +54,7 @@
 	</body>
 	<script type="text/javascript">
 		$(document).ready(function() {
-            $('img').revelador();
+            $('img').revelador(15, .6);
         });	
 	</script>
 </html>
