@@ -27,13 +27,16 @@
 					st = w.scrollTop(), 
 					sl = w.scrollLeft(),
 					wb = st + w.height(),
+					wr = sl + w.width(),
 
 					it = t.offset().top,
+					il = t.offset().left,
 					ib = it + t.height(),
-
+					ir = il + t.width(),
 					 d = t.data('src');
 
-				if((ib >= st + o.offset) && (it <= wb - o.offset)){
+				//console.log(st + " - " + sl + " - " + wb + " - " + wr + " - " + it + " - " + il + " - " + ib + " - " + ir + " - " + d);
+				if((ib >= st + o.offset) && (it <= wb - o.offset) && (ir >= sl + o.offset) && (il <= wr - o.offset)){
 					var img = new Image();
 	                img.onload = function(){
 	                    t.attr("src", d).css({'opacity':1});
@@ -45,7 +48,6 @@
 
 
 		w.on('scroll load', revelador);
-		//revelador();
 	};
 
 }( jQuery ));
