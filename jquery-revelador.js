@@ -1,30 +1,31 @@
 ;(function($) {
 
 	var w = $(window);
-	$.fn.revelador = function(offset, delay, callback) {
+	$.fn.revelador = function(opciones, callback) {
 
-		var imagenes = $('img');
-		var acargar = [];
-		offset = offset || 0;
-		delay = delay || 0.6;
-		console.log(offset);
+		var imagenes = this;
+			o = $.extend({
+				offset 	: 0,
+				delay 	: 0.6,
+			},opciones),
+			acargar = [];
 
 		for (var i = 0; i < imagenes.length; i++) { if ( $(imagenes[i]).attr('data-src') !== undefined ){ 
 				$(imagenes[i]).css({
 					'opacity' 	: '0',
-					'-webkit-transition': 'all '+delay+'s, ease-in-out ease-out',
-					'-moz-transition'	: 'all '+delay+'s, ease-in-out ease-out',
-					'-o-transition'		: 'all '+delay+'s, ease-in-out ease-out',
-					'transition'		: 'all '+delay+'s, ease-in-out ease-out',
+					'-webkit-transition': 'all '+o.delay+'s, ease-in-out ease-out',
+					'-moz-transition'	: 'all '+o.delay+'s, ease-in-out ease-out',
+					'-o-transition'		: 'all '+o.delay+'s, ease-in-out ease-out',
+					'transition'		: 'all '+o.delay+'s, ease-in-out ease-out',
 				});
 				acargar.push(imagenes[i]); 
 			} };
-
 
 		function revelador(){
 			$.each(acargar,function(i,e){
 				var  t = $(e), 
 					st = w.scrollTop(), 
+					sl = w.scrollLeft(),
 					wb = st + w.height(),
 
 					it = t.offset().top,
@@ -32,7 +33,7 @@
 
 					 d = t.data('src');
 
-				if((ib >= st + offset) && (it <= wb - offset)){
+				if((ib >= st + o.offset) && (it <= wb - o.offset)){
 					var img = new Image();
 	                img.onload = function(){
 	                    t.attr("src", d).css({'opacity':1});
