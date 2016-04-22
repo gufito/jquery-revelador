@@ -8,7 +8,8 @@
 				offset 	: 0,
 				delay 	: 0.6,
 			},opciones),
-			acargar = [];
+			acargar = [],
+			reveladas = [];
 
 		for (var i = 0; i < imagenes.length; i++) { if ( $(imagenes[i]).attr('data-src') !== undefined ){ 
 				$(imagenes[i]).css({
@@ -18,8 +19,8 @@
 					'-o-transition'		: 'all '+o.delay+'s, ease-in-out ease-out',
 					'transition'		: 'all '+o.delay+'s, ease-in-out ease-out',
 				});
-				acargar.push(imagenes[i]); 
-			} };
+				acargar.push(imagenes[i]);
+			}};
 
 		function revelador(){
 			$.each(acargar,function(i,e){
@@ -40,6 +41,9 @@
 					var img = new Image();
 	                img.onload = function(){
 	                    t.attr("src", d).css({'opacity':1});
+	                    reveladas.push(t);
+	                    acargar.splice(i,1);
+	                    callback(t,reveladas);
 	                };
 	                img.src = d;
 				}

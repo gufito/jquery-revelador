@@ -5,8 +5,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script type="text/javascript" src="jquery-revelador.js"></script>
 		<style type="text/css">
-            body{width: 300000px}
-            .imagen{position: relative; width: 459px; height: 460px; margin: 30px auto; float: left;}
+            .imagen{position: relative; width: 459px; height: 460px; margin: 30px auto;}
 		</style>
 	</head>
 	<body>
@@ -58,6 +57,8 @@
             $('img').revelador({
                 offset  : 0,
                 delay   : .6
+            }, function(e,r){
+                console.log($(e).attr('src'));
             });
         });	
 	</script>
